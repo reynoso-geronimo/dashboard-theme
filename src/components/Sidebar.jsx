@@ -12,12 +12,13 @@ import { useState } from "react";
 
 function Sidebar() {
   const [userInfo, setUserInfo] = useState({ count: 0,users: [],});
+  const [ticketInfo, setTicketInfo] = useState({ count: 0,users: [],});
   const [productInfo, setProductInfo] = useState({
     count: 0,
     countByCategory: {},
     products: [], });
 
-async function fetchDataUser(endpoint, setState) {
+async function fetchData(endpoint, setState) {
   try {
     const apiFetch = await fetch(endpoint);
     const data = await apiFetch.json();
@@ -54,7 +55,8 @@ async function fetchDataProduct(endpoint, setState) {
   useEffect(() => {
     async function data() {
       await Promise.all([
-        fetchDataUser("/api/users", setUserInfo),
+        fetchData("/api/users", setUserInfo),
+        fetchData("/api/tickets", setTicketInfo),
         fetchDataProduct("/api/products", setProductInfo),
       ]);
     }
@@ -128,7 +130,7 @@ async function fetchDataProduct(endpoint, setState) {
 
       <Switch>
         <Route path="/" exact={true}>
-          <ContentWraper productInfo={productInfo} userInfo={userInfo} />
+          <ContentWraper productInfo={productInfo} userInfo={userInfo} ticketInfo={ticketInfo}/>
         </Route>
         <Route
           path="/genres"
@@ -143,7 +145,7 @@ async function fetchDataProduct(endpoint, setState) {
           path="/lastMovieindb"
           exact={true}
           render={() => (
-            <LastMovieindb productInfo={productInfo} user={userInfo.users[0]} />
+            <LastMovieindb productInfo={productInfo} user={userInfo.users[userInfo.users.length-1]} />
           )}
         />
         <Route
@@ -152,7 +154,7 @@ async function fetchDataProduct(endpoint, setState) {
           productInfo={productInfo}
           userInfo={userInfo}
         >
-          <ContentRowMovies />
+          <ContentRowMovies productInfo={productInfo} userInfo={userInfo} ticketInfo={ticketInfo}/>
         </Route>
         <Route
           path="/tableUser"

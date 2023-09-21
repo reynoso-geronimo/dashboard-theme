@@ -1,19 +1,13 @@
-import React, { Component }  from 'react';
+import React from 'react';
 
 import Cards from './Cards';
 
-class ContentRowMovies extends Component {
-  constructor(props){
-    super(props);
-      this.state = {
-        totalMovies: [],
-        totalAwards: [],
-        actorsQuantity: []
-      }
-  }
-
-
-  async componentDidMount() {
+const ContentRowMovies =function({userInfo,productInfo, ticketInfo}) {
+ 
+console.log(userInfo)
+console.log(productInfo)
+console.log(ticketInfo)
+  //async componentDidMount() {
 
     // try {
     //   const apiMovies = await fetch('/api/movies')
@@ -33,31 +27,31 @@ class ContentRowMovies extends Component {
     // } catch (e) {
     //   console.error(e)
     // }
-  }
+  //}
 
   
-  render() {
+  
     return (
       <div className='row'>
               <Cards 
-                title = "Movies in Data Base"
-                quantity = {this.state.totalMovies}
+                title = "Usuarios en la base de datos"
+                quantity = {userInfo.count}
                 color = "primary"
                 icon = "fa-film" />
               <Cards 
-                title = "Total awards"
-                quantity = {this.state.totalAwards}
+                title = "Total de productos"
+                quantity = {productInfo.count}
                 color = "success"
                 icon = "fa-award" />
               <Cards 
-                title = "Actors quantity"
-                quantity = {this.state.actorsQuantity}
+                title = "Total de ventas"
+                quantity = {ticketInfo.count}
                 color = "warning"
                 icon = "fa-user" />
       </div>
 
     )
-  }
+  
 }
 
 export default ContentRowMovies

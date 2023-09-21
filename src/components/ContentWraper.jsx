@@ -6,14 +6,14 @@ import Table from "./table/Table";
 import "../assets/css/contentWrapper.css";
 
 
-function ContentWraper ({userInfo,productInfo}){
+function ContentWraper ({userInfo,productInfo, ticketInfo}){
 
    return(
 <>
 <div id="content">
 <TopBar/>
 
-<ContentRowTop categories={Object.keys(productInfo.countByCategory)} userInfo={userInfo}/>
+<ContentRowTop  userInfo={userInfo} productInfo={productInfo} ticketInfo={ticketInfo}/>
 
 
 <Table  data={productInfo.products}

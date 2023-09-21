@@ -5,19 +5,19 @@ import GenresInDb from './GenresInDb'
 
 import ContentRowMovies from './ContentRowMovies'
 
-export default function ContentRowTop({data,header,categories,userInfo}) {
- console.log(userInfo);
+export default function ContentRowTop({userInfo,productInfo, ticketInfo}) {
+
       return (
-      
+           
     <div className="container-fluid">
           <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">Theme Dashboard</h1>
           </div>
-                <ContentRowMovies data={data} header={header} />
+                <ContentRowMovies userInfo={userInfo} productInfo={productInfo} ticketInfo={ticketInfo} />
                 
           <div className="row">
                 <LastMovieInDb  user={userInfo.users[0]}/>
-                <GenresInDb  categories={categories} />
+                <GenresInDb  categories={Object.keys(productInfo.countByCategory)} />
           </div>
     </div>
 
