@@ -11,46 +11,47 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 function Sidebar() {
-  const [userInfo, setUserInfo] = useState({ count: 0,users: [],});
-  const [ticketInfo, setTicketInfo] = useState({ count: 0,users: [],});
+  const [userInfo, setUserInfo] = useState({ count: 0, users: [] });
+  const [ticketInfo, setTicketInfo] = useState({ count: 0, users: [] });
   const [productInfo, setProductInfo] = useState({
     count: 0,
     countByCategory: {},
-    products: [], });
+    products: [],
+  });
 
-async function fetchData(endpoint, setState) {
-  try {
-    const apiFetch = await fetch(endpoint);
-    const data = await apiFetch.json();
+  async function fetchData(endpoint, setState) {
+    try {
+      const apiFetch = await fetch(endpoint);
+      const data = await apiFetch.json();
 
-    setState(data.data);
-  } catch (e) {
-    console.error(e);
+      setState(data.data);
+    } catch (e) {
+      console.error(e);
+    }
   }
-}
-async function fetchDataProduct(endpoint, setState) {
-  try {
-    const apiFetch = await fetch(endpoint);
-    const data = await apiFetch.json();
+  async function fetchDataProduct(endpoint, setState) {
+    try {
+      const apiFetch = await fetch(endpoint);
+      const data = await apiFetch.json();
 
-    const productosParseados = data.data.products.map(producto => {
-      return {
-        ...producto,
-        category: producto.category.nombre,
+      const productosParseados = data.data.products.map(producto => {
+        return {
+          ...producto,
+          category: producto.category.nombre,
+        };
+      });
+
+      const producInfoParseada = {
+        count: data.data.count,
+        countByCategory: data.data.countByCategory,
+        products: productosParseados,
       };
-    });
 
-    const producInfoParseada = {
-      count: data.data.count,
-      countByCategory: data.data.countByCategory,
-      products: productosParseados,
-    };
-
-    setState(producInfoParseada);
-  } catch (e) {
-    console.error(e);
+      setState(producInfoParseada);
+    } catch (e) {
+      console.error(e);
+    }
   }
-}
 
   useEffect(() => {
     async function data() {
@@ -60,9 +61,7 @@ async function fetchDataProduct(endpoint, setState) {
         fetchDataProduct("/api/products", setProductInfo),
       ]);
     }
-    data()
-
-    
+    data();
   }, []);
 
   return (
@@ -130,22 +129,23 @@ async function fetchDataProduct(endpoint, setState) {
 
       <Switch>
         <Route path="/" exact={true}>
-          <ContentWraper productInfo={productInfo} userInfo={userInfo} ticketInfo={ticketInfo}/>
+          <ContentWraper
+            productInfo={productInfo}
+            userInfo={userInfo}
+            ticketInfo={ticketInfo}
+          />
         </Route>
-        <Route
-          path="/genres"
-          exact
-          element={
-            <GenresinDb categories={Object.keys(productInfo.countByCategory)} />
-          }
-        >
-          <GenresinDb categories={Object.keys(productInfo.countByCategory)} />
+        <Route path="/genres">
+          <GenresinDb categories={productInfo.countByCategory} />
         </Route>
         <Route
           path="/lastMovieindb"
           exact={true}
           render={() => (
-            <LastMovieindb productInfo={productInfo} user={userInfo.users[userInfo.users.length-1]} />
+            <LastMovieindb
+              productInfo={productInfo}
+              user={userInfo.users[userInfo.users.length - 1]}
+            />
           )}
         />
         <Route
@@ -154,7 +154,11 @@ async function fetchDataProduct(endpoint, setState) {
           productInfo={productInfo}
           userInfo={userInfo}
         >
-          <ContentRowMovies productInfo={productInfo} userInfo={userInfo} ticketInfo={ticketInfo}/>
+          <ContentRowMovies
+            productInfo={productInfo}
+            userInfo={userInfo}
+            ticketInfo={ticketInfo}
+          />
         </Route>
         <Route
           path="/tableUser"

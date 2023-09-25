@@ -14,8 +14,8 @@ export default  function GenresInDb({categories}) {
                   </div>
                   <div className="card-body fondoCaja">
                     <div className="row ">
-                      { categories.map( (category, i) => (
-                          <Genre key = {category + i} name={category}/>
+                      { Object.entries(categories).map( ([category,count]) => (
+                          <Genre key = {category} name={category + ": " + count}/>
                       ))}
                     </div>
                   </div>

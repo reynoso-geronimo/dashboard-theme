@@ -3,10 +3,7 @@ import React from 'react';
 import Cards from './Cards';
 
 const ContentRowMovies =function({userInfo,productInfo, ticketInfo}) {
- 
-console.log(userInfo)
-console.log(productInfo)
-console.log(ticketInfo)
+
   //async componentDidMount() {
 
     // try {
@@ -37,17 +34,17 @@ console.log(ticketInfo)
                 title = "Usuarios en la base de datos"
                 quantity = {userInfo.count}
                 color = "primary"
-                icon = "fa-film" />
+                icon = "fa-user" />
               <Cards 
                 title = "Total de productos"
                 quantity = {productInfo.count}
                 color = "success"
-                icon = "fa-award" />
+                icon = "fa-tags" />
               <Cards 
                 title = "Total de ventas"
                 quantity = {ticketInfo.count}
                 color = "warning"
-                icon = "fa-user" />
+                icon = "fa-file-invoice-dollar" />
       </div>
 
     )
