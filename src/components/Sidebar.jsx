@@ -102,7 +102,7 @@ function Sidebar() {
         <li className="nav-item">
           <Link className="nav-link collapsed" to="/lastMovieindb">
             <i className="fas fa-fw fa-folder"></i>
-            <span>Ultimo producto en la base de datos</span>
+            <span>Ultimo usuario en la base de datos</span>
           </Link>
         </li>
 
