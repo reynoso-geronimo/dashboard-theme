@@ -30,36 +30,57 @@ const ContentRowMovies =function({userInfo,productInfo, ticketInfo}) {
     // }
   //}
 
+ 
   
-  
-    return (
-      // <div className='contenedorTickets'>
+    if (window.location.href.includes("/contentRowMovies")) {
+      return (
+        <div className='contenedorTickets'>
+         <div className='row'>
+                 <Cards 
+                   title = "Usuarios en la base de datos"
+                   quantity = {userInfo.count}
+                   color = "primary"
+                   icon = "fa-user" />
+                 <Cards 
+                   title = "Total de productos"
+                   quantity = {productInfo.count}
+                   color = "success"
+                   icon = "fa-tags" />
+                 <Cards 
+                   title = "Total de ventas"
+                   quantity = {ticketInfo.count}
+                   color = "warning"
+                   icon = "fa-file-invoice-dollar" />
+         </div> 
+         {ticketInfo.tickets.map((ticket) => (
+         <div className='ticketContainer'>
+          <div className='ticketMainInfo'><h5> Ticket id: {ticket.ticket.id}</h5> <h5> User id: {ticket.ticket.usuario_id}</h5> <h5>{(new Date(ticket.ticket.createdAt)).toLocaleDateString()}</h5> <h5>Estado {ticket.ticket.estado}</h5></div>
+          {ticket.products.map((producto)=>(
+           <div className='ticketMainInfo'><h5>Producto: {producto.producto.nombre}</h5><h5> Precio: ${producto.precioFechaCompra}</h5> <h5>Talle:{producto.talle}</h5> <h5>Cantidad: {producto.cantidad}</h5></div>
+          ))}
+         </div>
+         ))} 
+         </div>
+       )
+    }else 
+    return(
       <div className='row'>
-              <Cards 
-                title = "Usuarios en la base de datos"
-                quantity = {userInfo.count}
-                color = "primary"
-                icon = "fa-user" />
-              <Cards 
-                title = "Total de productos"
-                quantity = {productInfo.count}
-                color = "success"
-                icon = "fa-tags" />
-              <Cards 
-                title = "Total de ventas"
-                quantity = {ticketInfo.count}
-                color = "warning"
-                icon = "fa-file-invoice-dollar" />
-      {/* </div> */}
-      {/* {ticketInfo.tickets.map((ticket) => (
-      <div className='ticketContainer'>
-       <div className='ticketMainInfo'><h5> Ticket id: {ticket.id}</h5> <h5> Userid: {ticket.user}</h5> <h5>Fecha {(new Date(ticket.createdAt)).toLocaleDateString()}</h5> <h5>Estado {ticket.state}</h5></div>
-       {ticket.productos.map((producto)=>(
-        <div className='ticketMainInfo'><h5>Producto id : {producto.id}</h5><h5> Precio: {producto.precioFechaCompra}</h5> <h5>Talle:{producto.talle}</h5> <h5>Cantidad: {producto.cantidad}</h5></div>
-       ))}
-      </div>
-      ))} */}
-      </div>
+      <Cards 
+        title = "Usuarios en la base de datos"
+        quantity = {userInfo.count}
+        color = "primary"
+        icon = "fa-user" />
+      <Cards 
+        title = "Total de productos"
+        quantity = {productInfo.count}
+        color = "success"
+        icon = "fa-tags" />
+      <Cards 
+        title = "Total de ventas"
+        quantity = {ticketInfo.count}
+        color = "warning"
+        icon = "fa-file-invoice-dollar" />
+</div> 
     )
   
 }

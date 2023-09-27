@@ -57,7 +57,7 @@ function Sidebar() {
     async function data() {
       await Promise.all([
         fetchData("/api/users", setUserInfo),
-        fetchData("/api/tickets", setTicketInfo),
+        fetchData("/api/tickets2", setTicketInfo),
         fetchDataProduct("/api/products", setProductInfo),
       ]);
     }
