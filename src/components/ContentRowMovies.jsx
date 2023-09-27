@@ -1,9 +1,13 @@
 import React from 'react';
 
 import Cards from './Cards';
+import { useEffect } from 'react';
+import "../assets/css/contentWrapper.css";
 
 const ContentRowMovies =function({userInfo,productInfo, ticketInfo}) {
-
+  useEffect(() => {
+    console.log(ticketInfo)
+  }, [ticketInfo])
   //async componentDidMount() {
 
     // try {
@@ -29,6 +33,7 @@ const ContentRowMovies =function({userInfo,productInfo, ticketInfo}) {
   
   
     return (
+      // <div className='contenedorTickets'>
       <div className='row'>
               <Cards 
                 title = "Usuarios en la base de datos"
@@ -45,8 +50,16 @@ const ContentRowMovies =function({userInfo,productInfo, ticketInfo}) {
                 quantity = {ticketInfo.count}
                 color = "warning"
                 icon = "fa-file-invoice-dollar" />
+      {/* </div> */}
+      {/* {ticketInfo.tickets.map((ticket) => (
+      <div className='ticketContainer'>
+       <div className='ticketMainInfo'><h5> Ticket id: {ticket.id}</h5> <h5> Userid: {ticket.user}</h5> <h5>Fecha {(new Date(ticket.createdAt)).toLocaleDateString()}</h5> <h5>Estado {ticket.state}</h5></div>
+       {ticket.productos.map((producto)=>(
+        <div className='ticketMainInfo'><h5>Producto id : {producto.id}</h5><h5> Precio: {producto.precioFechaCompra}</h5> <h5>Talle:{producto.talle}</h5> <h5>Cantidad: {producto.cantidad}</h5></div>
+       ))}
       </div>
-
+      ))} */}
+      </div>
     )
   
 }

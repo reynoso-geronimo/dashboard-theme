@@ -16,7 +16,7 @@ export default function ContentRowTop({userInfo,productInfo, ticketInfo}) {
                 <ContentRowMovies userInfo={userInfo} productInfo={productInfo} ticketInfo={ticketInfo} />
                 
           <div className="row">
-                <LastMovieInDb  user={userInfo.users[userInfo.count-1]}/>
+                <LastMovieInDb product={productInfo.products[productInfo.count-1]}/>
                 <GenresInDb  categories={productInfo.countByCategory} />
           </div>
     </div>

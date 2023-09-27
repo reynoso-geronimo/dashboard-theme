@@ -12,7 +12,7 @@ import { useState } from "react";
 
 function Sidebar() {
   const [userInfo, setUserInfo] = useState({ count: 0, users: [] });
-  const [ticketInfo, setTicketInfo] = useState({ count: 0, users: [] });
+  const [ticketInfo, setTicketInfo] = useState({ count: 0, tickets: [] });
   const [productInfo, setProductInfo] = useState({
     count: 0,
     countByCategory: {},
@@ -102,7 +102,7 @@ function Sidebar() {
         <li className="nav-item">
           <Link className="nav-link collapsed" to="/lastMovieindb">
             <i className="fas fa-fw fa-folder"></i>
-            <span>Ultimo usuario en la base de datos</span>
+            <span>Ultimo producto en la base de datos</span>
           </Link>
         </li>
 
@@ -110,7 +110,7 @@ function Sidebar() {
         <li className="nav-item">
           <Link className="nav-link" to="/genres">
             <i className="fas fa-fw fa-chart-area"></i>
-            <span>GenreInDb</span>
+            <span>Categorias</span>
           </Link>
         </li>
 
@@ -118,7 +118,7 @@ function Sidebar() {
         <li className="nav-item">
           <Link className="nav-link" to="/contentRowMovies">
             <i className="fas fa-fw fa-table"></i>
-            <span>Content Row Movies</span>
+            <span>Tickets</span>
           </Link>
         </li>
 
@@ -143,8 +143,8 @@ function Sidebar() {
           exact={true}
           render={() => (
             <LastMovieindb
-              productInfo={productInfo}
-              user={userInfo.users[userInfo.users.length - 1]}
+            product={productInfo.products[productInfo.count-1]}
+             
             />
           )}
         />
